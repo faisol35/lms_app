@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lms_app/splashscreen.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/home/dashboard_screen.dart';
 import '../../features/classes/classes_screen.dart';
@@ -8,6 +9,7 @@ import '../../features/notification/notification_screen.dart';
 import '../../features/announcement/announcement_list_screen.dart';
 import '../../features/announcement/announcement_detail_screen.dart';
 import 'scaffold_with_nav_bar.dart';
+import 'package:lms_app/splashscreen.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> _shellNavigatorHomeKey =
@@ -19,8 +21,9 @@ final GlobalKey<NavigatorState> _shellNavigatorNotificationsKey =
 
 final appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: '/login',
+  initialLocation: '/splash',
   routes: [
+    GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
