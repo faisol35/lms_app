@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'materi.dart';
+import 'materi.dart';
 
 class ClassesScreen extends StatelessWidget {
   const ClassesScreen({super.key});
@@ -47,7 +47,7 @@ class ClassesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Kelas Saya", style: TextStyle(color: Colors.white)),
-        backgroundColor: Color(0xFF0B0547),
+        backgroundColor: Color.fromARGB(255, 236, 44, 44),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
@@ -56,14 +56,14 @@ class ClassesScreen extends StatelessWidget {
           final kelas = listKelas[index];
 
           return InkWell(
-            // onTap: () {
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (_) => MateriPage(namaKelas: kelas["title"]),
-            //     ),
-            //   );
-            // },
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => MateriPage(namaKelas: kelas["title"]),
+                ),
+              );
+            },
             child: Container(
               margin: const EdgeInsets.only(bottom: 20),
               child: Row(
@@ -95,7 +95,7 @@ class ClassesScreen extends StatelessWidget {
                         const SizedBox(height: 8),
                         LinearProgressIndicator(
                           value: kelas["progress"],
-                          color: const Color(0xFF0B0547),
+                          color: const Color.fromARGB(255, 236, 44, 44),
                           backgroundColor: Colors.grey.shade300,
                         ),
                         const SizedBox(height: 4),

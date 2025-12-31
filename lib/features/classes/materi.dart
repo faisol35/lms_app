@@ -1,0 +1,147 @@
+import 'package:flutter/material.dart';
+import 'package:lms_hybird/fitur/materi2.dart';
+import 'quiz.dart';
+import 'materi_sheet.dart';
+// import 'materi2.dart';
+
+class MateriPage extends StatelessWidget {
+  final String namaKelas;
+
+  const MateriPage({super.key, required this.namaKelas});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF0B0547),
+        title: Text(
+          namaKelas,
+          style: const TextStyle(fontSize: 14, color: Colors.white),
+        ),
+      ),
+      body: Column(
+        children: [
+          // TAB
+          Container(
+            color: Colors.white,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "Materi",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const TugasPage()),
+                      );
+                    },
+                    child: const Center(child: Text("Tugas Dan Kuis")),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 10),
+
+          // LIST MATERI
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                MateriItem(
+                  pertemuan: "Pertemuan 1",
+                  title: "01 - Pengantar User Interface Design",
+                  showButton: true,
+                  onButtonPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) =>
+                          const MateriDetailSheet(pertemuan: "Pertemuan 1"),
+                    );
+                  },
+                ),
+                MateriItem(
+                  pertemuan: "Pertemuan 2",
+                  title: "02 - Konsep User Interface Design",
+                  showButton: true,
+                  onButtonPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) => const MateriKeDua(),
+                    );
+                  },
+                ),
+                const MateriItem(
+                  pertemuan: "Pertemuan 3",
+                  title: "03 - Interaksi pada UI Design",
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MateriItem extends StatelessWidget {
+  final String pertemuan;
+  final String title;
+  final bool showButton;
+  final VoidCallback? onButtonPressed;
+
+  const MateriItem({
+    super.key,
+    required this.pertemuan,
+    required this.title,
+    this.showButton = false,
+    this.onButtonPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [BoxShadow(color: Colors.grey[200]!, blurRadius: 6)],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Chip(label: Text(pertemuan)),
+          const SizedBox(height: 6),
+          Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+          if (showButton) ...[
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: onButtonPressed,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF0B0547),
+                foregroundColor: Colors.white,
+              ),
+              child: const Text("Lihat Materi"),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
