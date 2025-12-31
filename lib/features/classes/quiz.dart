@@ -8,7 +8,7 @@ class TugasPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF0B0547),
+        backgroundColor: const Color.fromARGB(255, 236, 44, 44),
         title: const Text(
           "Tugas Dan Kuis",
           style: TextStyle(color: Colors.white),
