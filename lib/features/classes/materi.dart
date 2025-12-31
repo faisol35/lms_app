@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lms_hybird/fitur/materi2.dart';
+import 'materi2.dart';
 import 'quiz.dart';
-import 'materi_sheet.dart';
+import 'detail_botton.dart';
 // import 'materi2.dart';
 
 class MateriPage extends StatelessWidget {
