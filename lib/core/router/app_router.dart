@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/home/dashboard_screen.dart';
-import '../../features/classes/classes_screen.dart';
 import '../../features/profile/profile_screen.dart';
+import '../../features/notification/notification_screen.dart';
 import '../../features/announcement/announcement_list_screen.dart';
 import '../../features/announcement/announcement_detail_screen.dart';
 import 'scaffold_with_nav_bar.dart';
@@ -40,7 +40,7 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/classes',
-              builder: (context, state) => const ClassesScreen(),
+              builder: (context, state) => const ProfileScreen(),
             ),
           ],
         ),
@@ -48,8 +48,8 @@ final appRouter = GoRouter(
           navigatorKey: _shellNavigatorProfileKey,
           routes: [
             GoRoute(
-              path: '/profile',
-              builder: (context, state) => const ProfileScreen(),
+              path: '/notifications',
+              builder: (context, state) => const NotificationScreen(),
             ),
           ],
         ),
