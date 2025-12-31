@@ -128,8 +128,175 @@ class _DetailQuizPageState extends State<DetailQuizPage> {
                     vertical: 10,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const QuizDua()),
+                  );
+                },
                 child: const Text("Soal Selanjutnya"),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class QuizDua extends StatefulWidget {
+  const QuizDua({super.key});
+
+  @override
+  State<QuizDua> createState() => _QuizDuaState();
+}
+
+class _QuizDuaState extends State<QuizDua> {
+  int selectedOption = 2; // contoh jawaban terpilih (C)
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+
+      // ===== APP BAR =====
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFB64A4A),
+        elevation: 0,
+        title: const Text("Quiz Review 1", style: TextStyle(fontSize: 16)),
+        actions: [
+          Row(
+            children: const [
+              Icon(Icons.access_time, size: 18),
+              SizedBox(width: 5),
+              Text("15 : 00"),
+              SizedBox(width: 15),
+            ],
+          ),
+        ],
+      ),
+
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // ===== NOMOR SOAL =====
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: List.generate(15, (index) {
+                bool active = index == 1;
+                return CircleAvatar(
+                  radius: 13,
+                  backgroundColor: active ? Colors.green : Colors.transparent,
+                  child: Text(
+                    "${index + 1}",
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: active ? Colors.white : Colors.black,
+                    ),
+                  ),
+                );
+              }),
+            ),
+
+            const SizedBox(height: 20),
+
+            // ===== JUDUL SOAL =====
+            const Text(
+              "Soal Nomor 2 / 15",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+
+            const SizedBox(height: 20),
+
+            // ===== PERTANYAAN =====
+            const Text(
+              "Dalam perancangan web yang baik, untuk teks yang menyampaikan isi konten digunakan font yang sama di setiap halaman, ini merupakan salah satu tujuan yaitu ?",
+              style: TextStyle(fontSize: 14),
+            ),
+
+            const SizedBox(height: 20),
+
+            // ===== PILIHAN JAWABAN =====
+            _optionItem("A", "Intergrasi", 0),
+            _optionItem("B", "Standarisasi", 1),
+            _optionItem("C", "Konsistensi", 2),
+            _optionItem("D", "Koefensi", 3),
+            _optionItem("E", "Koreksi", 4),
+
+            const Spacer(),
+
+            // ===== TOMBOL NAVIGASI =====
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey.shade200,
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: const Text("Soal Sebelumnya"),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey.shade200,
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  onPressed: () {},
+                  child: const Text("Soal Selanjutnya"),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ===== WIDGET PILIHAN =====
+  Widget _optionItem(String label, String text, int index) {
+    bool isSelected = selectedOption == index;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedOption = index;
+        });
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: isSelected ? const Color(0xFFEF6C6C) : Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            Text(
+              "$label.",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: isSelected ? Colors.white : Colors.black,
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                text,
+                style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.black,
+                ),
               ),
             ),
           ],
