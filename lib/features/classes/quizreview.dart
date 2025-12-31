@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'detailquiz.dart';
 
 class Quizreview extends StatelessWidget {
   const Quizreview({super.key});
@@ -140,7 +141,14 @@ class Quizreview extends StatelessWidget {
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailQuizPage(),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey.shade200,
                       foregroundColor: Colors.black,

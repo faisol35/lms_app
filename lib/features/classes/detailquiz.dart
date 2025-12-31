@@ -8,182 +8,132 @@ class DetailQuizPage extends StatefulWidget {
 }
 
 class _DetailQuizPageState extends State<DetailQuizPage> {
-  int currentQuestion = 0;
+  int selectedIndex = 0;
 
-  final List<Map<String, dynamic>> questions = [
-    {
-      "question": "Radio button dapat digunakan untuk menentukan ?",
-      "options": [
-        "Jenis Kelamin",
-        "Alamat",
-        "Hobby",
-        "Riwayat Pendidikan",
-        "Umur",
-      ],
-      "selected": 0,
-    },
-    {
-      "question":
-          "Dalam perancangan web yang baik, untuk teks yang menyampaikan isi konten digunakan font yang sama di setiap halaman, ini merupakan salah satu tujuan yaitu ?",
-      "options": [
-        "Intergrasi",
-        "Standarisasi",
-        "Konsistensi",
-        "Koefensi",
-        "Koreksi",
-      ],
-      "selected": 2,
-    },
+  final List<String> options = [
+    "Jenis Kelamin",
+    "Alamat",
+    "Hobby",
+    "Riwayat Pendidikan",
+    "Umur",
   ];
 
   @override
   Widget build(BuildContext context) {
-    final question = questions[currentQuestion];
-
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: const Color(0xFFB34B4B),
         elevation: 0,
         title: const Text("Quiz Review 1"),
+        centerTitle: true,
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 16),
             child: Row(
               children: [
                 Icon(Icons.alarm, size: 18),
-                SizedBox(width: 5),
+                SizedBox(width: 6),
                 Text("15 : 00"),
               ],
             ),
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildNumberIndicator(),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(
-              "Soal Nomor ${currentQuestion + 1} / ${questions.length}",
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              question["question"],
-              style: const TextStyle(fontSize: 15),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: question["options"].length,
-              itemBuilder: (context, index) {
-                final isSelected = question["selected"] == index;
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      question["selected"] = index;
-                    });
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: isSelected
-                          ? const Color(0xFFF06565)
-                          : Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(color: Colors.black12, blurRadius: 4),
-                      ],
-                    ),
-                    child: Text(
-                      "${String.fromCharCode(65 + index)}. ${question["options"][index]}",
-                      style: TextStyle(
-                        color: isSelected ? Colors.white : Colors.black,
-                        fontWeight: FontWeight.w500,
-                      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // indikator nomor soal
+            Wrap(
+              spacing: 6,
+              runSpacing: 6,
+              children: List.generate(15, (index) {
+                final isActive = index == 0;
+                return CircleAvatar(
+                  radius: 14,
+                  backgroundColor: isActive ? Colors.green : Colors.white,
+                  child: Text(
+                    "${index + 1}",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: isActive ? Colors.white : Colors.black,
                     ),
                   ),
                 );
-              },
+              }),
             ),
-          ),
-          _buildNavigationButton(),
-          const SizedBox(height: 10),
-        ],
-      ),
-    );
-  }
+            const SizedBox(height: 20),
 
-  Widget _buildNumberIndicator() {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Wrap(
-        spacing: 8,
-        children: List.generate(questions.length, (index) {
-          final isActive = index == currentQuestion;
-          return CircleAvatar(
-            radius: 14,
-            backgroundColor: isActive ? Colors.green : Colors.grey.shade300,
-            child: Text(
-              "${index + 1}",
-              style: TextStyle(
-                color: isActive ? Colors.white : Colors.black,
-                fontSize: 12,
-              ),
+            // nomor soal
+            const Text(
+              "Soal Nomor 1 / 15",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-          );
-        }),
-      ),
-    );
-  }
+            const SizedBox(height: 20),
 
-  Widget _buildNavigationButton() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          if (currentQuestion > 0)
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.grey[300],
-                foregroundColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+            // pertanyaan
+            const Text(
+              "Radio button dapat digunakan untuk menentukan ?",
+              style: TextStyle(fontSize: 15),
+            ),
+            const SizedBox(height: 25),
+
+            // pilihan jawaban
+            ...List.generate(options.length, (index) {
+              final isSelected = selectedIndex == index;
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 14),
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: isSelected ? const Color(0xFFF06565) : Colors.white,
+                    borderRadius: BorderRadius.circular(14),
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black12, blurRadius: 4),
+                    ],
+                  ),
+                  child: Text(
+                    "${String.fromCharCode(65 + index)}.  ${options[index]}",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: isSelected ? Colors.white : Colors.black,
+                    ),
+                  ),
                 ),
+              );
+            }),
+
+            const Spacer(),
+
+            // tombol selanjutnya
+            Align(
+              alignment: Alignment.centerRight,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey.shade200,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                ),
+                onPressed: () {},
+                child: const Text("Soal Selanjutnya"),
               ),
-              onPressed: () {
-                setState(() {
-                  currentQuestion--;
-                });
-              },
-              child: const Text("Soal Sebelumnya"),
             ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.grey[300],
-              foregroundColor: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-            onPressed: () {
-              if (currentQuestion < questions.length - 1) {
-                setState(() {
-                  currentQuestion++;
-                });
-              }
-            },
-            child: const Text("Soal Selanjutnya"),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
