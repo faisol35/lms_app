@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/home/dashboard_screen.dart';
+import '../../features/classes/classes_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/notification/notification_screen.dart';
 import '../../features/announcement/announcement_list_screen.dart';
@@ -13,8 +14,8 @@ final GlobalKey<NavigatorState> _shellNavigatorHomeKey =
     GlobalKey<NavigatorState>(debugLabel: 'shellHome');
 final GlobalKey<NavigatorState> _shellNavigatorClassesKey =
     GlobalKey<NavigatorState>(debugLabel: 'shellClasses');
-final GlobalKey<NavigatorState> _shellNavigatorProfileKey =
-    GlobalKey<NavigatorState>(debugLabel: 'shellProfile');
+final GlobalKey<NavigatorState> _shellNavigatorNotificationsKey =
+    GlobalKey<NavigatorState>(debugLabel: 'shellNotifications');
 
 final appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
@@ -40,12 +41,12 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: '/classes',
-              builder: (context, state) => const ProfileScreen(),
+              builder: (context, state) => const ClassesScreen(),
             ),
           ],
         ),
         StatefulShellBranch(
-          navigatorKey: _shellNavigatorProfileKey,
+          navigatorKey: _shellNavigatorNotificationsKey,
           routes: [
             GoRoute(
               path: '/notifications',
