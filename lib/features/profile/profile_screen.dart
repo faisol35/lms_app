@@ -36,8 +36,7 @@ class ProfileScreen extends StatelessWidget {
                               Icons.arrow_back,
                               color: Colors.white,
                             ),
-                            onPressed:
-                                () {}, // Can go back if pushed or do nothing
+                            onPressed: () => context.pop(),
                           ),
                           const Spacer(),
                         ],

@@ -66,5 +66,10 @@ final appRouter = GoRouter(
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) => const AnnouncementDetailScreen(),
     ),
+    GoRoute(
+      path: '/profile',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => const ProfileScreen(),
+    ),
   ],
 );
