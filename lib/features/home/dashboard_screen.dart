@@ -31,7 +31,8 @@ class DashboardScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Halo, Budi', // Hello, [Name]
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -40,21 +41,18 @@ class DashboardScreen extends StatelessWidget {
                       Text(
                         'Selamat Datang Kembali!',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.white.withOpacity(0.9),
-                            ),
+                          color: Colors.white.withOpacity(0.9),
+                        ),
                       ),
                     ],
                   ),
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha: 0.2),
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
-                      PhosphorIcons.bell,
-                      color: Colors.white,
-                    ),
+                    child: Icon(PhosphorIcons.bell(), color: Colors.white),
                   ),
                 ],
               ),
@@ -100,16 +98,19 @@ class DashboardScreen extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            Icon(PhosphorIcons.clock, size: 20, color: Colors.orange),
+                            Icon(
+                              PhosphorIcons.clock(),
+                              size: 20,
+                              color: Colors.orange,
+                            ),
                             const SizedBox(width: 8),
                             const Expanded(
                               child: Text('Matematika Dasar - Bab 3'),
                             ),
                             Text(
                               'Besok',
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: Colors.red,
-                                  ),
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: Colors.red),
                             ),
                           ],
                         ),
@@ -120,14 +121,18 @@ class DashboardScreen extends StatelessWidget {
                         child: OutlinedButton(
                           onPressed: () {},
                           style: OutlinedButton.styleFrom(
-                            side: BorderSide(color: Theme.of(context).primaryColor),
+                            side: BorderSide(
+                              color: Theme.of(context).primaryColor,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
                           ),
                           child: Text(
                             'Lihat Semua',
-                            style: TextStyle(color: Theme.of(context).primaryColor),
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
                           ),
                         ),
                       ),
@@ -156,12 +161,14 @@ class DashboardScreen extends StatelessWidget {
                 children: [
                   AnnouncementCard(
                     title: 'Jadwal Ujian Semester',
-                    description: 'Ujian semester akan dilaksanakan mulai tanggal 15 Januari...',
+                    description:
+                        'Ujian semester akan dilaksanakan mulai tanggal 15 Januari...',
                     color: Colors.blue.shade700,
                   ),
                   const AnnouncementCard(
                     title: 'Libur Nasional',
-                    description: 'Kampus akan tutup pada tanggal 25 Desember untuk perayaan...',
+                    description:
+                        'Kampus akan tutup pada tanggal 25 Desember untuk perayaan...',
                     color: Colors.teal,
                   ),
                 ],

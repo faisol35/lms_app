@@ -26,7 +26,7 @@ class CourseCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: iconColor.withOpacity(0.1),
+                color: iconColor.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -40,10 +40,7 @@ class CourseCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
+                  Text(title, style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 8),
                   LinearProgressIndicator(
                     value: progressValue,
@@ -55,10 +52,7 @@ class CourseCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(3),
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    progress,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
+                  Text(progress, style: Theme.of(context).textTheme.bodySmall),
                 ],
               ),
             ),

@@ -20,15 +20,42 @@ class AppTheme {
         surface: secondaryColor,
       ),
       textTheme: GoogleFonts.poppinsTextTheme().copyWith(
-        displayLarge: const TextStyle(color: textDark, fontWeight: FontWeight.bold),
-        displayMedium: const TextStyle(color: textDark, fontWeight: FontWeight.bold),
-        displaySmall: const TextStyle(color: textDark, fontWeight: FontWeight.bold),
-        headlineLarge: const TextStyle(color: textDark, fontWeight: FontWeight.bold),
-        headlineMedium: const TextStyle(color: textDark, fontWeight: FontWeight.bold),
-        headlineSmall: const TextStyle(color: textDark, fontWeight: FontWeight.bold),
-        titleLarge: const TextStyle(color: textDark, fontWeight: FontWeight.w600),
-        titleMedium: const TextStyle(color: textDark, fontWeight: FontWeight.w600),
-        titleSmall: const TextStyle(color: textDark, fontWeight: FontWeight.w600),
+        displayLarge: const TextStyle(
+          color: textDark,
+          fontWeight: FontWeight.bold,
+        ),
+        displayMedium: const TextStyle(
+          color: textDark,
+          fontWeight: FontWeight.bold,
+        ),
+        displaySmall: const TextStyle(
+          color: textDark,
+          fontWeight: FontWeight.bold,
+        ),
+        headlineLarge: const TextStyle(
+          color: textDark,
+          fontWeight: FontWeight.bold,
+        ),
+        headlineMedium: const TextStyle(
+          color: textDark,
+          fontWeight: FontWeight.bold,
+        ),
+        headlineSmall: const TextStyle(
+          color: textDark,
+          fontWeight: FontWeight.bold,
+        ),
+        titleLarge: const TextStyle(
+          color: textDark,
+          fontWeight: FontWeight.w600,
+        ),
+        titleMedium: const TextStyle(
+          color: textDark,
+          fontWeight: FontWeight.w600,
+        ),
+        titleSmall: const TextStyle(
+          color: textDark,
+          fontWeight: FontWeight.w600,
+        ),
         bodyLarge: const TextStyle(color: textDark),
         bodyMedium: const TextStyle(color: textDark),
         bodySmall: const TextStyle(color: textLight),
@@ -36,7 +63,10 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.grey[100],
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
@@ -66,13 +96,11 @@ class AppTheme {
           elevation: 0,
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: Colors.white,
         elevation: 2,
-        shadowColor: Colors.black.withOpacity(0.05),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+        shadowColor: Colors.black.withValues(alpha: 0.05),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         margin: EdgeInsets.zero,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
