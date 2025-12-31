@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'widgets/course_card.dart';
 
@@ -169,12 +170,15 @@ class DashboardScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    'Lihat Semua',
-                    style: TextStyle(
-                      color: Colors.blueAccent,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                  GestureDetector(
+                    onTap: () => context.push('/announcements'),
+                    child: const Text(
+                      'Lihat Semua',
+                      style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],

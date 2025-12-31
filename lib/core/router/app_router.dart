@@ -4,21 +4,23 @@ import '../../features/auth/login_screen.dart';
 import '../../features/home/dashboard_screen.dart';
 import '../../features/classes/classes_screen.dart';
 import '../../features/profile/profile_screen.dart';
+import '../../features/announcement/announcement_list_screen.dart';
+import '../../features/announcement/announcement_detail_screen.dart';
 import 'scaffold_with_nav_bar.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
-final GlobalKey<NavigatorState> _shellNavigatorHomeKey = GlobalKey<NavigatorState>(debugLabel: 'shellHome');
-final GlobalKey<NavigatorState> _shellNavigatorClassesKey = GlobalKey<NavigatorState>(debugLabel: 'shellClasses');
-final GlobalKey<NavigatorState> _shellNavigatorProfileKey = GlobalKey<NavigatorState>(debugLabel: 'shellProfile');
+final GlobalKey<NavigatorState> _shellNavigatorHomeKey =
+    GlobalKey<NavigatorState>(debugLabel: 'shellHome');
+final GlobalKey<NavigatorState> _shellNavigatorClassesKey =
+    GlobalKey<NavigatorState>(debugLabel: 'shellClasses');
+final GlobalKey<NavigatorState> _shellNavigatorProfileKey =
+    GlobalKey<NavigatorState>(debugLabel: 'shellProfile');
 
 final appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/login',
   routes: [
-    GoRoute(
-      path: '/login',
-      builder: (context, state) => const LoginScreen(),
-    ),
+    GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return ScaffoldWithNavBar(navigationShell: navigationShell);
@@ -52,6 +54,16 @@ final appRouter = GoRouter(
           ],
         ),
       ],
+    ),
+    GoRoute(
+      path: '/announcements',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => const AnnouncementListScreen(),
+    ),
+    GoRoute(
+      path: '/announcements/detail',
+      parentNavigatorKey: _rootNavigatorKey,
+      builder: (context, state) => const AnnouncementDetailScreen(),
     ),
   ],
 );
