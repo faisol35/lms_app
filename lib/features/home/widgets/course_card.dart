@@ -1,63 +1,84 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class CourseCard extends StatelessWidget {
   final String title;
-  final String progress;
+  final String code;
+  final String semester;
   final double progressValue;
-  final Color iconColor;
+  final Color thumbnailColor;
+  final Widget? thumbnailContent;
 
   const CourseCard({
     super.key,
     required this.title,
-    required this.progress,
+    required this.code,
+    required this.semester,
     required this.progressValue,
-    this.iconColor = Colors.blue,
+    this.thumbnailColor = Colors.grey,
+    this.thumbnailContent,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
       margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: iconColor.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Icon(
-                PhosphorIcons.bookOpen(PhosphorIconsStyle.fill),
-                color: iconColor,
-                size: 24,
-              ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Thumbnail
+          Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              color: thumbnailColor.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(8),
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: Theme.of(context).textTheme.titleMedium),
-                  const SizedBox(height: 8),
-                  LinearProgressIndicator(
-                    value: progressValue,
-                    backgroundColor: Colors.grey[200],
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      Theme.of(context).primaryColor,
+            child: thumbnailContent ?? const SizedBox(),
+          ),
+          const SizedBox(width: 16),
+          // Content
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(semester, style: Theme.of(context).textTheme.bodySmall),
+                const SizedBox(height: 4),
+                Text(
+                  title,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(code, style: Theme.of(context).textTheme.bodySmall),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Expanded(
+                      child: LinearProgressIndicator(
+                        value: progressValue,
+                        backgroundColor: Colors.grey[200],
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Theme.of(context).primaryColor, // Red
+                        ),
+                        minHeight: 8,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
                     ),
-                    minHeight: 6,
-                    borderRadius: BorderRadius.circular(3),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(progress, style: Theme.of(context).textTheme.bodySmall),
-                ],
-              ),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '${(progressValue * 100).toInt()}% Selesai',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
