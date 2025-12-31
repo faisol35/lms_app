@@ -32,7 +32,7 @@ class DashboardScreen extends StatelessWidget {
                           ).textTheme.bodyMedium?.copyWith(color: Colors.white),
                         ),
                         Text(
-                          'DANDY CANDRA PRATAMA',
+                          'Moh. Faisol Ansori',
                           style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(
                                 color: Colors.white,

@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        'DANDY CANDRA PRATAMA',
+                        'Moh. Faisol Ansori',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -143,12 +143,9 @@ class _AboutMeView extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
         const SizedBox(height: 16),
-        _buildInfoItem(
-          'Email address',
-          'dandycandra@365.telkomuniversity.ac.id',
-        ),
-        _buildInfoItem('Program Studi', 'D4 Teknologi Rekayasa Multimedia'),
-        _buildInfoItem('Fakultas', 'FIT'),
+        _buildInfoItem('Email address', 'mohfaisolansori@uim.ac.id'),
+        _buildInfoItem('Program Studi', 'S1 Teknik Informatika'),
+        _buildInfoItem('Fakultas', 'Teknik'),
 
         const SizedBox(height: 32),
 
